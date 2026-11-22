@@ -23,8 +23,6 @@ NAPI(libgooutcore.so) ──┬─ invoke → CGoInvoke → libgoout.so(libXray 
                         └─ startHev → hev-socks5-tunnel(tun ⇄ socks5)
 ```
 
-详细设计见 `docs/plan.md`。
-
 ## 构建
 
 前置：DevEco Studio 26（含 HarmonyOS SDK / NDK）。Go 工具链由脚本自动准备。
@@ -97,7 +95,6 @@ entry/src/main/cpp/     NAPI 模块与 hev-socks5-tunnel
 entry/src/test/         单元测试（Hypium LocalUnit）
 native/gooutbridge/     Go 桥接（libXray cgo 封装）
 native/scripts/         交叉编译与部署脚本
-docs/                   方案与开发记录
 ```
 
 ## License
