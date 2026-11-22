@@ -1,0 +1,11 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "GoOut - HarmonyOS Xray client",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libgooutcore.so": "file:./src/main/cpp/types/libgooutcore"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "libgooutcore.so",
+  "version": "1.0.0",
+  "description": "GoOut native core: go bridge invoke + hev tun2socks",
+  "main": "",
+  "types": "./index.d.ts",
+  "dependencies": {}
+}

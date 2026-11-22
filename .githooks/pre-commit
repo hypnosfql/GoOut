@@ -1,0 +1,29 @@
+#!/bin/bash
+# pre-commit 钩子：单元测试必须 100% 通过才允许提交
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+DEVECO="C:/Program Files/Huawei/DevEco Studio"
+export DEVECO_SDK_HOME="C:\\Program Files\\Huawei\\DevEco Studio\\sdk"
+export PATH="/c/Program Files/Huawei/DevEco Studio/tools/node:/c/Program Files/Huawei/DevEco Studio/jbr/bin:$PATH"
+
+echo "[pre-commit] running unit tests..."
+NODE="$DEVECO/tools/node/node.exe"
+"$NODE" "$DEVECO/tools/hvigor/bin/hvigorw.js" --mode module -p product=default test --no-daemon > "$ROOT/.tmp/hvigor-test.log" 2>&1 || {
+  echo "[pre-commit] unit test FAILED (build/run error). See .tmp/hvigor-test.log"
+  exit 1
+}
+
+RESULT="$ROOT/entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+if [ ! -f "$RESULT" ]; then
+  echo "[pre-commit] test result not found: $RESULT"
+  exit 1
+fi
+
+SUMMARY=$(tail -1 "$RESULT")
+echo "[pre-commit] $SUMMARY"
+if ! echo "$SUMMARY" | grep -q "Failure: 0, Error: 0"; then
+  echo "[pre-commit] unit tests have failures/errors, commit rejected."
+  exit 1
+fi
+echo "[pre-commit] OK"

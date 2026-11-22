@@ -1,0 +1,21 @@
+/node_modules
+/oh_modules
+/local.properties
+/.idea
+**/build
+/.hvigor
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+**/.test
+/.appanalyzer
+# GoOut build artifacts (regenerable)
+.tmp/
+refs/
+entry/libs/
+entry/src/main/cpp/third_party/goout/prebuilt/
+
+# test artifacts
+entry/.test/
+coverage/
